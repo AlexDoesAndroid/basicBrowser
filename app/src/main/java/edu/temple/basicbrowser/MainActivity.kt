@@ -43,12 +43,18 @@ class MainActivity : AppCompatActivity() {
         // this will load the url of the website
       //  webView.loadUrl("https://temple.edu")
 
+        goButton.setOnClickListener{
+            val text = urlEditText.text.toString()
+                //"www.temple.edu"
+                urlEditText.text
+            //https://www.temple.edu
+            requestQueue.add(
+                StringRequest(Request.Method.GET, text, {
+                    webView.loadDataWithBaseURL("", it, "text/html", "utf-8", null)
+                }, {})
+            )
+        }
 
-        requestQueue.add(
-            StringRequest(Request.Method.GET, "https://www.temple.edu", {
-                webView.loadDataWithBaseURL("", it, "text/html", "utf-8", null)
-            }, {})
-        )
 
         // Allow your browser to intercept hyperlink clicks
         webView.webViewClient = object: WebViewClient() {
