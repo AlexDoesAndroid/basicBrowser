@@ -44,13 +44,11 @@ class MainActivity : AppCompatActivity() {
         requestQueue = Volley.newRequestQueue(this)
         // this will load the url of the website
       //  webView.loadUrl("https://temple.edu")
-            this.setTitle("Temple.edu")
+
         goButton.setOnClickListener{
             var text = urlEditText.text.toString()
-                //"www.temple.edu"
-              //  urlEditText.text
-            //https://www.temple.edu
 
+            this.setTitle("Temple.edu")
             if (text.substring(0,7) != "https://")
                 text = "https://"+ text
 
