@@ -32,22 +32,29 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-       // webView.settings.javaScriptEnabled = true
+
         urlEditText = findViewById(R.id.urlEditText)
         goButton = findViewById(R.id.goButton)
         webView = findViewById(R.id.webView)
+
+        webView.settings.javaScriptEnabled = true
         webView.webViewClient = WebViewClient()
 
         // using Volly
         requestQueue = Volley.newRequestQueue(this)
         // this will load the url of the website
       //  webView.loadUrl("https://temple.edu")
-
+            this.setTitle("Temple.edu")
         goButton.setOnClickListener{
-            val text = urlEditText.text.toString()
+            var text = urlEditText.text.toString()
                 //"www.temple.edu"
-                urlEditText.text
+              //  urlEditText.text
             //https://www.temple.edu
+
+            if (text.substring(0,7) != "https://")
+                text = "https://"+ text
+
+
             requestQueue.add(
                 StringRequest(Request.Method.GET, text, {
                     webView.loadDataWithBaseURL("", it, "text/html", "utf-8", null)
